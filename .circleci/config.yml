@@ -77,4 +77,4 @@ workflows:
           - build
           filters:
             branches:
-              only: feat/#4_deploy_heroku
+              only: master
