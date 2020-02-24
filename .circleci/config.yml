@@ -21,6 +21,11 @@ jobs:
             cd Docker
             docker-compose up -d
       - run:
+          name: Run phpunit
+          command: |
+            set -x
+            docker-compose run php vendor/phpunit/phpunit/phpunit
+      - run:
           name: Test Container
           command: |
             docker run --network container:nginx \

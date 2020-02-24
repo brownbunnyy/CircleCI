@@ -18,6 +18,6 @@ ENV COMPOSER_HOME /composer
 
 ENV PATH $PATH:/composer/vendor/bin
 
-WORKDIR /src
+WORKDIR /var/www
 
-RUN composer global require "laravel/installer"
+# RUN composer global require "laravel/installer"
