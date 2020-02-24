@@ -21,6 +21,12 @@ jobs:
             cd Docker
             docker-compose up -d
       - run:
+          name: Composer install
+          command: |
+            set -x
+            cd Docker
+            docker-compose run php composer install
+      - run:
           name: Run phpunit
           command: |
             set -x
