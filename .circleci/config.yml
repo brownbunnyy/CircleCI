@@ -20,7 +20,6 @@ jobs:
             set -x
             cd Docker
             docker-compose up -d
-            docker-compose run php composer global install
       - run:
           name: Test Container
           command: |
