@@ -27,6 +27,12 @@ jobs:
             cd Docker
             docker-compose run php composer install
       - run:
+          name: Copy Laravel .env
+          command: |
+            set -x
+            cd src
+            cp .env.example .env
+      - run:
           name: Generate Application Key
           command: |
             set -x
