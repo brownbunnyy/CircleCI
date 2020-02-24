@@ -24,6 +24,7 @@ jobs:
           name: Run phpunit
           command: |
             set -x
+            cd Docker
             docker-compose run php vendor/phpunit/phpunit/phpunit
       - run:
           name: Test Container
