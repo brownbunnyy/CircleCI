@@ -22,4 +22,4 @@ WORKDIR /src
 
 RUN composer global require "laravel/installer"
 
-RUN composer update
+RUN composer install
