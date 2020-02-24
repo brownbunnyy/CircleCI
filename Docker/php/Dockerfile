@@ -21,3 +21,5 @@ ENV PATH $PATH:/composer/vendor/bin
 WORKDIR /src
 
 RUN composer global require "laravel/installer"
+
+RUN composer update
