@@ -1,16 +1,27 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: debian:stretch
+    machine:
+      image: circleci/classic:latest
+
+    working_directory: ~/repo
 
     steps:
       - checkout
-
       - run:
-          name: Greeting
-          command: echo Hello, world.
-
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: Print the Current Time
-          command: date
+          name: Start container
+          command: |
+            set -x
+            cd Docker
+            docker-compose up -d
+      - run:
+          name: Test Container
+          command: |
+            docker run --network container:nginx \
+            appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost
