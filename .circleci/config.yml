@@ -21,11 +21,18 @@ jobs:
             cd Docker
             docker-compose up -d
       - run:
-          name: Composer install
+          name: Composer Install
           command: |
             set -x
             cd Docker
             docker-compose run php composer install
+      - run:
+          name: Generate Application Key
+          command: |
+            set -x
+            cd Docker
+            docker-compose run php php artisan key:generate
+      # Start Test
       - run:
           name: Run phpunit
           command: |
@@ -33,7 +40,7 @@ jobs:
             cd Docker
             docker-compose run php vendor/phpunit/phpunit/phpunit
       - run:
-          name: Test Container
+          name: Test Web Server
           command: |
             docker run --network container:nginx \
             appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost
